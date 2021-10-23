@@ -1,0 +1,7 @@
+# directories
+venv/
+
+# files
+.tool-versions
+ssh/bastion*
+ssh/target*
