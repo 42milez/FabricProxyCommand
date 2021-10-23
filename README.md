@@ -1,4 +1,6 @@
 # FabricProxyCommand
+![GitHub](https://img.shields.io/github/license/42milez/FabricProxyCommand)
+
 ## Quick Start
 ### 1. Install Python packages
 ```shell
