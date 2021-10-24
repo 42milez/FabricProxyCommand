@@ -1,0 +1,29 @@
+name: CI
+on:
+  push:
+    branches:
+      - "*"
+    tags-ignore:
+      - "*"
+jobs:
+  analyze:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        python-version: [ 3.9.x ]
+        os: [ ubuntu-latest ]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          go-version: ${{ matrix.python-version }}
+#      - uses: actions/cache@v2
+#        with:
+#          path: ~/.cache/pip
+#          key: ${{ hashFiles('requirements.txt') }}
+      - name: Install requirements
+        run: pip install --upgrade --upgrade-strategy eager -r requirements.txt -e .
+      - name: Apply formatting
+        run: make format
+      - name: Apply lint checks
+        run: make lint
