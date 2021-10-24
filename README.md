@@ -42,6 +42,8 @@ fab -H target-proxy whoami
 - Scan local Docker images: `./scan.sh`
 
 ## References
+- Fabric
+  - [Invoking tasks](https://docs.pyinvoke.org/en/latest/concepts/invoking-tasks.html)
 - Python
   - [Python caching in GitHub Actions](https://medium.com/ai2-blog/python-caching-in-github-actions-e9452698e98d)
   - [Fabric2 へ移行した際の雑Tips](https://kumak1.hatenablog.com/entry/2018/05/18/181347)
