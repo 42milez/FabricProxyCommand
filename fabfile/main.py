@@ -31,7 +31,7 @@ def dev(c, service=None, command=None, warn=False, print_result=True):
 
     logger.debug("target_hosts: %s", target_hosts)
 
-    group = ThreadingGroup(hosts=target_hosts)
+    group = ThreadingGroup(*target_hosts)
     ret = group.run(command, warn=warn)
 
     if print_result:
