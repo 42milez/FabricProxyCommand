@@ -1,7 +1,9 @@
 # FabricProxyCommand
 ![GitHub](https://img.shields.io/github/license/42milez/FabricProxyCommand)
 
-[Fabric](https://github.com/fabric/fabric) is able to execute shell commands remotely via SSH. This repository offers an environment to be able to try performing such tasks locally using Docker.
+[Fabric](https://github.com/fabric/fabric) is able to execute shell commands remotely over SSH. This repository offers an environment to be able to try performing such tasks locally using Docker.
+
+In this example, Fabric uses the bastion host as a gateway to connect to the target host.
 
 ## Quick Start
 ### 1. Install Python packages
@@ -28,10 +30,8 @@ docker-compose up -d
 ```
 
 ### 5. Run task
-Perform a fabric task on each host.
+Perform a fabric task on the target host.
 ```shell
-fab -H bastion whoami
-fab -H target whoami
 fab -H target-proxy whoami
 ```
 
