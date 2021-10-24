@@ -1,6 +1,8 @@
 # FabricProxyCommand
 ![GitHub](https://img.shields.io/github/license/42milez/FabricProxyCommand)
 
+[Fabric](https://github.com/fabric/fabric) is able to execute shell commands remotely via SSH. This repository offers an environment to be able to try performing such tasks locally using Docker.
+
 ## Quick Start
 ### 1. Install Python packages
 ```shell
