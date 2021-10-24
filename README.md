@@ -4,9 +4,9 @@
 ## Quick Start
 ### 1. Install Python packages
 ```shell
-$ python -m venv ./venv
-$ . ./venv/bin/activate
-$ pip install -r requirements.txt
+python -m venv ./venv
+. ./venv/bin/activate
+pip install -r requirements.txt
 ```
 
 ### 2. Generate SSH keys
@@ -34,20 +34,27 @@ fab -H target-proxy whoami
 ```
 
 ## Other commands
-### Scan local Docker images
+#### Scan local Docker images
 ```shell
 ./scan.sh
 ```
 
-### Apply link checks
+#### Apply lint checks
 ```shell
 make lint
 ```
 
-### Reformat code
+#### Reformat code
 ```shell
 make format
 ```
+
+#### Install pre-commit hook
+```shell
+pre-commit install
+```
+
+#### 
 
 ## References
 - Python
