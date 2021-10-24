@@ -4,10 +4,8 @@ version: "3.9"
 # --------------------------------------------------
 x-const:
   hostname:
-    bastion: &HOSTNAME_BASTION
-      "bastion"
-    target: &HOSTNAME_TARGET
-      "target"
+    bastion: &HOSTNAME_BASTION "bastion"
+    target: &HOSTNAME_TARGET "target"
 
 #  Services
 # --------------------------------------------------
