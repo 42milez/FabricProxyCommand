@@ -15,8 +15,6 @@ services:
   bastion:
     build:
       args:
-        GID: 1000
-        UID: 1000
         HOSTNAME: *HOSTNAME_BASTION
       dockerfile: docker/host.Dockerfile
     container_name: *HOSTNAME_BASTION
@@ -31,8 +29,6 @@ services:
   target:
     build:
       args:
-        GID: 1000
-        UID: 1000
         HOSTNAME: *HOSTNAME_TARGET
       dockerfile: docker/host.Dockerfile
     container_name: *HOSTNAME_TARGET
