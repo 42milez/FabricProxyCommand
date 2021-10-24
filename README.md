@@ -35,28 +35,11 @@ Perform a fabric task on the target host.
 fab -H target-proxy whoami
 ```
 
-## Other commands
-#### Scan local Docker images
-```shell
-./scan.sh
-```
-
-#### Apply lint checks
-```shell
-make lint
-```
-
-#### Reformat code
-```shell
-make format
-```
-
-#### Install pre-commit hook
-```shell
-pre-commit install
-```
-
-#### 
+## Notes
+- Install pre-commit hook: `pre-commit install`
+- Apply lint checks: `make lint`
+- Reformat code: `make format`
+- Scan local Docker images: `./scan.sh`
 
 ## References
 - Python
