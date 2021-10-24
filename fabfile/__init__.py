@@ -1,4 +1,4 @@
-from logging import DEBUG, Formatter, StreamHandler
+from logging import DEBUG, Formatter, StreamHandler, getLogger
 
 from fabfile.main import *
 
