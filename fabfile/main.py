@@ -36,7 +36,7 @@ def dev(c, service=None, command=None, warn=False, print_result=True):
 
     if print_result:
         for connection, result in ret.items():
-            logger.debug(connection.host + ': ' + result.stdout.strip())
+            logger.debug(connection.host + ": " + result.stdout.strip())
 
     return ret
 
