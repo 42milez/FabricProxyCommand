@@ -5,11 +5,13 @@ version: "3.9"
 x-const:
   hostname:
     bastion: &HOSTNAME_BASTION "bastion"
-    target: &HOSTNAME_TARGET "target"
+    target1: &HOSTNAME_TARGET_1 "target1"
+    target2: &HOSTNAME_TARGET_2 "target2"
 
 #  Services
 # --------------------------------------------------
 services:
+  # bastion
   bastion:
     build:
       args:
@@ -24,18 +26,34 @@ services:
       - '22222:22'
     stdin_open: true
     tty: true
-  target:
+  # target 1
+  target1:
     build:
       args:
-        HOSTNAME: *HOSTNAME_TARGET
+        HOSTNAME: *HOSTNAME_TARGET_1
       dockerfile: docker/host.Dockerfile
-    container_name: *HOSTNAME_TARGET
-    hostname: *HOSTNAME_TARGET
-    image: fpc-target
+    container_name: *HOSTNAME_TARGET_1
+    hostname: *HOSTNAME_TARGET_1
+    image: fpc-target-1
     networks:
       - internal
     ports:
       - '22223:22'
+    stdin_open: true
+    tty: true
+  # target 2
+  target2:
+    build:
+      args:
+        HOSTNAME: *HOSTNAME_TARGET_2
+      dockerfile: docker/host.Dockerfile
+    container_name: *HOSTNAME_TARGET_2
+    hostname: *HOSTNAME_TARGET_2
+    image: fpc-target-2
+    networks:
+      - internal
+    ports:
+      - '22224:22'
     stdin_open: true
     tty: true
 

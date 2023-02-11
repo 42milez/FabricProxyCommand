@@ -1,23 +1,53 @@
-from logging import DEBUG, Formatter, StreamHandler, getLogger
+from logging import getLogger
 
-from fabric import Config, Connection
+from fabric import ThreadingGroup
 from invoke import task
 
-logger = getLogger(__name__)
-handler = StreamHandler()
-handler.setFormatter(Formatter("%(asctime)s %(name)s:%(lineno)s %(funcName)s [%(levelname)s] %(message)s"))
-handler.setLevel(DEBUG)
-logger.setLevel(DEBUG)
-logger.addHandler(handler)
-logger.propagate = False
+from fabfile.host import hosts
 
-Config.ssh_config_path = "./ssh/config"
+logger = getLogger("FPC").getChild("main")
 
 
 @task(default=True)
-def whoami(conn):
-    logger.debug("host: %s", conn.host)
-    logger.debug("original host: %s", conn.original_host)
-    ckwargs = {"banner_timeout": 30}
-    c = Connection(host=conn.host, connect_kwargs=ckwargs)
+def whoami(c):
+    logger.debug("host: %s", c.host)
+    logger.debug("original host: %s", c.original_host)
+    c.connect_kwargs["banner_timeout"] = 30
     c.run("whoami")
+
+
+@task
+def dev(c, service=None, command=None, warn=False, print_result=True):
+    target_hosts = []
+
+    if service == "all":
+        target_hosts = hosts["dev"]
+    elif service in hosts["dev"]:
+        target_hosts = hosts["dev"][service]
+    else:
+        logger.fatal("unsupported service")
+        c.close()
+        exit(-1)
+
+    logger.debug("target_hosts: %s", target_hosts)
+
+    group = ThreadingGroup(*target_hosts)
+    ret = group.run(command, warn=warn)
+
+    if print_result:
+        for connection, result in ret.items():
+            logger.debug(connection.host + ": " + result.stdout.strip())
+
+    return ret
+
+
+@task
+def stg(c, service=None, command=None, warn=False, print_result=True):
+    print("service: {service}".format(service=service))
+    print("command: {command}".format(command=command))
+
+
+@task
+def prod(c, service=None, command=None, warn=False, print_result=True):
+    print("service: {service}".format(service=service))
+    print("command: {command}".format(command=command))

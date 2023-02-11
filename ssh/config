@@ -15,17 +15,29 @@ Host bastion
   Port         22222
   IdentityFile ./ssh/bastion
 
-Host target
-  User         target
+Host target1
+  User         target1
   Port         22223
-  IdentityFile ./ssh/target
+  IdentityFile ./ssh/target1
 
-Host target-proxy
+Host target2
+  User         target2
+  Port         22224
+  IdentityFile ./ssh/target2
+
+Host target1-proxy
   ProxyCommand ./ssh/proxy.sh %h %p bastion
-  User         target
-  Hostname     target
+  User         target1
+  Hostname     target1
   Port         22
-  IdentityFile ./ssh/target
+  IdentityFile ./ssh/target1
+  
+Host target2-proxy
+  ProxyCommand ./ssh/proxy.sh %h %p bastion
+  User         target2
+  Hostname     target2
+  Port         22
+  IdentityFile ./ssh/target2
 
 Host *
   AddKeysToAgent        yes
